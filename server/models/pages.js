@@ -342,11 +342,11 @@ module.exports = class Page extends Model {
     await WIKI.models.pages.query().patch({
       authorId: opts.user.id,
       content: opts.content,
-      description: opts.description,
+      description: opts.description || ogPage.description,
       isPublished: opts.isPublished === true || opts.isPublished === 1,
       publishEndDate: opts.publishEndDate || '',
       publishStartDate: opts.publishStartDate || '',
-      title: opts.title
+      title: opts.title || ogPage.title
     }).where('id', ogPage.id)
     let page = await WIKI.models.pages.getPageFromDb(ogPage.id)
 

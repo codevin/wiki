@@ -408,7 +408,7 @@ router.get('/*', async (req, res, next) => {
           }
           res.render('legacy/page', { page, sidebar, injectCode, isAuthenticated: req.user && req.user.id !== 2 })
         } else {
-          res.render('page', { page, sidebar, injectCode })
+          res.render('page', { page, sidebar, injectCode, pretty:true })
         }
       } else if (pageArgs.path === 'home') {
         _.set(res.locals, 'pageMeta.title', 'Welcome')

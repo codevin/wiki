@@ -151,7 +151,7 @@ module.exports = {
     async single (obj, args, context, info) {
       let page = await WIKI.models.pages.getPageFromDb(args.id)
       if (page) {
-        if (WIKI.auth.checkAccess(context.req.user, ['manage:pages', 'delete:pages'], {
+        if (WIKI.auth.checkAccess(context.req.user, [ 'read.pages'  ], {
           path: page.path,
           locale: page.localeCode
         })) {
@@ -353,6 +353,7 @@ module.exports = {
           page
         }
       } catch (err) {
+        console.log("Error updating page:", err)
         return graphHelper.generateError(err)
       }
     },
